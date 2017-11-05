@@ -1,0 +1,29 @@
+
+
+
+
+
+plugins {
+    id "org.flywaydb.flyway" version "4.2.0"
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.9
+
+
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5433/foodngo'
+    user = 'postgres'
+    password = 'postgres'
+}
+
+dependencies {
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+
+}
+
+repositories {
+    mavenCentral()
+}
