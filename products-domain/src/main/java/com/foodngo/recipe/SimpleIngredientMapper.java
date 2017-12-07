@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SimpleIngredientMapper implements IngredientMapper {
 
@@ -21,19 +22,21 @@ public class SimpleIngredientMapper implements IngredientMapper {
 
         Optional<Ingredient> baseIngredient = Optional.empty();
 
-        Matcher matcher = NUMBER_PATTERN.matcher(line);
-        boolean matches = matcher.matches();
-        String amount = matches ? matcher.group() : "1";
+        String amount = getAmount(line);
 
         for (Unit unit : units) {
-            baseIngredient = unit.unitNames()
-                    .filter(unitName -> line.contains(unitName))
-                    .findFirst()
+            Stream<String> stringStream = unit.unitNames();
+            baseIngredient = stringStream
+                    .filter(s -> line.contains(s))
+                    .findAny()
                     .map(s -> BaseIngredient.Builder.aBaseIngredient()
                             .withAmount(amount)
                             .withName(line)
                             .withUnit(unit)
                             .build());
+            if(baseIngredient.isPresent()) {
+                break;
+            }
         }
 
         return baseIngredient.or(() -> Optional.of(BaseIngredient.Builder.aBaseIngredient()
@@ -43,5 +46,11 @@ public class SimpleIngredientMapper implements IngredientMapper {
                 .build()));
 
 
+    }
+
+    private String getAmount(String line) {
+        Matcher matcher = NUMBER_PATTERN.matcher(line);
+        boolean matches = matcher.find();
+        return matches ? matcher.group().trim() : "1";
     }
 }
