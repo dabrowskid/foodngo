@@ -2,14 +2,11 @@ package com.foodngo.recipe;
 
 import org.junit.Test;
 
-import javax.swing.text.html.Option;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+import java.util.TreeMap;
 
 public class RecipeParserImplTest {
-
 
 
     @Test
@@ -29,8 +26,6 @@ public class RecipeParserImplTest {
         StringRecipe stringRecipe = new StringRecipe(recipe);
 
 
-
-
         RecipePareser recipePareser = new RecipeParserImpl(stringRecipe, Collections.singletonList(new SimpleIngredientMapper()));
 
         List<Ingredient> ingredients = recipePareser.parseRecipe(stringRecipe);
@@ -38,6 +33,8 @@ public class RecipeParserImplTest {
 
         ingredients.forEach(ingredient -> System.out.println(ingredient));
 
+
+        TreeMap<Integer, String> treeMap = new TreeMap<>();
 
 
 

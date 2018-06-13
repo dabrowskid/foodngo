@@ -35,3 +35,7 @@ subprojects {
     group = 'com.foodngo'
     version = '0.0.1-SNAPSHOT'
 }
+
+ext {
+    springBootVersion = '2.0.2-RELEASE'
+}

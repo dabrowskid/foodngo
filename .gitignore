@@ -42,3 +42,4 @@ gradle-app.setting
 /gradle/
 !/gradle/
 */out/
+/fooservice/src/main/ui/dist/
