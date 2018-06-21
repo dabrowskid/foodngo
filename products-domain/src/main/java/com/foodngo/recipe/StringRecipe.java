@@ -3,7 +3,7 @@ package com.foodngo.recipe;
 import java.util.Arrays;
 import java.util.List;
 
-public class StringRecipe implements Recipe {
+class StringRecipe implements Recipe {
 
 
     private final String recipe;

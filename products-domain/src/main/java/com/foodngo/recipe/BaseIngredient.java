@@ -1,16 +1,18 @@
 package com.foodngo.recipe;
 
-public class BaseIngredient implements Ingredient {
+import java.math.BigDecimal;
+
+class BaseIngredient implements Ingredient {
 
 
     private final String name;
     private final Unit unit;
-    private final String amount;
+    private final BigDecimal amount;
 
     public BaseIngredient(String name, Unit unit, String  amount) {
         this.name = name;
         this.unit = unit;
-        this.amount = amount;
+        this.amount = new BigDecimal(amount);
     }
 
 
@@ -20,7 +22,7 @@ public class BaseIngredient implements Ingredient {
     }
 
     @Override
-    public String amount() {
+    public BigDecimal amount() {
         return this.amount;
     }
 

@@ -1,10 +1,12 @@
 package com.foodngo.recipe;
 
+import java.math.BigDecimal;
+
 public interface Ingredient {
 
     Unit unit();
 
-    String amount();
+    BigDecimal amount();
 
     String name();
 
