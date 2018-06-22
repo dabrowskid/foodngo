@@ -2,9 +2,9 @@ import com.foodngo.recipe.IngredientMapper
 import com.foodngo.recipe.SimpleIngredientMapper
 import spock.lang.*
 
-class Test extends Specification  {
+class SimpleIngredientMapperTest extends Specification  {
 
-    def "product parsers should parse simple recipe" () {
+    def "should parse product " () {
         given :
             IngredientMapper mapper = new SimpleIngredientMapper()
         when :
